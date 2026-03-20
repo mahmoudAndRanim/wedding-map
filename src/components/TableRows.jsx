@@ -3,9 +3,14 @@ import { motion } from 'framer-motion'
 const CHAIRS_PER_TABLE = 8
 
 function Table({ table, isActive, onClick }) {
+  const filled = table.guests.filter((g) => g).length
+  const isFull = filled >= CHAIRS_PER_TABLE
+  const isEmpty = filled === 0
+  const statusClass = isFull ? ' table--full' : isEmpty ? ' table--empty' : ' table--available'
+
   return (
     <motion.div
-      className={`table${isActive ? ' table--active' : ''}`}
+      className={`table${isActive ? ' table--active' : ''}${statusClass}`}
       onClick={() => onClick(table)}
       initial={{ opacity: 0, scale: 0.7 }}
       animate={{ opacity: 1, scale: 1 }}
@@ -14,11 +19,16 @@ function Table({ table, isActive, onClick }) {
     >
       <div className="table__chairs">
         {Array.from({ length: CHAIRS_PER_TABLE }).map((_, i) => (
-          <div key={i} className="chair" />
+          <div key={i} className={`chair${i < filled ? ' chair--occupied' : ''}`} />
         ))}
       </div>
       <div className="table__surface">
-        <span className="table__number">{table.id}</span>
+        <div className="table__info">
+          <span className="table__number">{table.id}</span>
+          <span className="table__status">
+            {isFull ? 'Fullt' : isEmpty ? 'Ledig' : `${filled}/${CHAIRS_PER_TABLE}`}
+          </span>
+        </div>
       </div>
     </motion.div>
   )

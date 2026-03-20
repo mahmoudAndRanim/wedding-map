@@ -451,6 +451,41 @@ body {
   color: var(--gold-deep);
   user-select: none;
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+  line-height: 1;
+}
+
+.table__info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+}
+
+.table__status {
+  font-family: var(--font-body);
+  font-size: 0.55rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--gold);
+  line-height: 1;
+}
+
+/* Status colors */
+.table--full .table__status {
+  color: #8B6B4A;
+}
+
+.table--available .table__status {
+  color: #6B8E5A;
+}
+
+.table--empty .table__status {
+  color: var(--text-dim);
+}
+
+.table--empty .table__surface {
+  opacity: 0.55;
 }
 
 /* Chairs around the table */
@@ -465,13 +500,23 @@ body {
   height: 10px;
   border-radius: 50%;
   background:
+    radial-gradient(circle at 40% 35%, #ccc, #aaa, #999);
+  border: 1px solid rgba(150, 150, 150, 0.3);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  opacity: 0.4;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.chair--occupied {
+  background:
     radial-gradient(circle at 40% 35%, #B89E6A, #8A7650, #6B5A3A);
   border: 1px solid rgba(107, 90, 58, 0.3);
   box-shadow:
     0 1px 2px rgba(0, 0, 0, 0.1),
     inset 0 1px 1px rgba(255, 255, 255, 0.15);
-  opacity: 0.7;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0.8;
 }
 
 .table:hover .chair {
@@ -672,21 +717,21 @@ body {
   border-radius: 50%;
 }
 
-.legend__dot--table {
-  background: var(--card-bg);
-  border: 1.5px solid rgba(138, 118, 80, 0.3);
+.legend__dot--occupied {
+  background: radial-gradient(circle at 40% 35%, #B89E6A, #8A7650);
 }
 
-.legend__dot--chair {
-  background: var(--gold);
+.legend__dot--free {
+  background: #ccc;
   opacity: 0.5;
 }
 
-.legend__dot--aisle {
-  width: 12px;
-  height: 2px;
-  border-radius: 1px;
-  background: rgba(138, 118, 80, 0.3);
+.legend__dot--available {
+  background: #6B8E5A;
+}
+
+.legend__dot--full {
+  background: #8B6B4A;
 }
 
 /* ===== LOADING ===== */
