@@ -352,7 +352,7 @@ body {
 .table-row__left,
 .table-row__right {
   display: flex;
-  gap: 24px;
+  gap: 36px;
   flex: 1;
 }
 
@@ -564,14 +564,14 @@ body {
 }
 
 /* Position 8 chairs tightly around the table */
-.chair:nth-child(1) { top: 6%;  left: 50%; transform: translate(-50%, -50%); }
-.chair:nth-child(2) { top: 18%; right: 18%; transform: translate(50%, -50%); }
-.chair:nth-child(3) { top: 50%; right: 6%;  transform: translate(50%, -50%); }
-.chair:nth-child(4) { bottom: 18%; right: 18%; transform: translate(50%, 50%); }
-.chair:nth-child(5) { bottom: 6%;  left: 50%; transform: translate(-50%, 50%); }
-.chair:nth-child(6) { bottom: 18%; left: 18%; transform: translate(-50%, 50%); }
-.chair:nth-child(7) { top: 50%; left: 6%;  transform: translate(-50%, -50%); }
-.chair:nth-child(8) { top: 18%; left: 18%; transform: translate(-50%, -50%); }
+.chair:nth-child(1) { top: 10%;  left: 50%; transform: translate(-50%, -50%); }
+.chair:nth-child(2) { top: 20%; right: 20%; transform: translate(50%, -50%); }
+.chair:nth-child(3) { top: 50%; right: 10%;  transform: translate(50%, -50%); }
+.chair:nth-child(4) { bottom: 20%; right: 20%; transform: translate(50%, 50%); }
+.chair:nth-child(5) { bottom: 10%;  left: 50%; transform: translate(-50%, 50%); }
+.chair:nth-child(6) { bottom: 20%; left: 20%; transform: translate(-50%, 50%); }
+.chair:nth-child(7) { top: 50%; left: 10%;  transform: translate(-50%, -50%); }
+.chair:nth-child(8) { top: 20%; left: 20%; transform: translate(-50%, -50%); }
 
 
 
