@@ -2,8 +2,13 @@ export default function Stage({ t }) {
   return (
     <div className="stage">
       <div className="stage__area">
-        <div className="scene-box">
-          <span className="scene-box__label">{t.scene}</span>
+        <div className="kouch">
+          <div className="kouch__back" />
+          <div className="kouch__seat">
+            <span className="kouch__label">{t.scene}</span>
+          </div>
+          <div className="kouch__arm kouch__arm--left" />
+          <div className="kouch__arm kouch__arm--right" />
         </div>
       </div>
 

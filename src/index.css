@@ -221,30 +221,78 @@ body {
   background: linear-gradient(180deg, rgba(138, 118, 80, 0.06) 0%, transparent 100%);
 }
 
-/* ===== SCENE BOX (replaces kouch) ===== */
+/* ===== KOUCH (centered sofa for bride & groom) ===== */
 
-.scene-box {
-  width: 260px;
-  height: 70px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, #C9B07A 0%, #B89E6A 50%, #A68B4B 100%);
+.kouch {
+  position: relative;
+  width: 220px;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.kouch__back {
+  width: 200px;
+  height: 22px;
+  border-radius: 60px 60px 4px 4px;
+  background: linear-gradient(180deg, #C9B07A 0%, #B89E6A 40%, #A68B4B 100%);
+  box-shadow:
+    0 -2px 6px rgba(0, 0, 0, 0.08),
+    inset 0 2px 4px rgba(255, 255, 255, 0.25),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(138, 118, 80, 0.3);
+  border-bottom: none;
+  position: relative;
+  z-index: 2;
+}
+
+.kouch__seat {
+  width: 220px;
+  padding: 14px 16px 18px;
+  border-radius: 8px 8px 14px 14px;
+  background: linear-gradient(180deg, #D4C494 0%, #C9B07A 50%, #B89E6A 100%);
   border: 1px solid rgba(138, 118, 80, 0.3);
   box-shadow:
     0 4px 14px rgba(0, 0, 0, 0.1),
+    0 1px 4px rgba(0, 0, 0, 0.06),
     inset 0 1px 2px rgba(255, 255, 255, 0.2);
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.scene-box__label {
+.kouch__label {
   font-family: var(--font-heading);
-  font-size: 1.1rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  color: #fff;
+  color: var(--gold-deep);
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.kouch__arm {
+  position: absolute;
+  top: 16px;
+  width: 16px;
+  height: 70px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #C9B07A 0%, #A68B4B 100%);
+  border: 1px solid rgba(138, 118, 80, 0.3);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  z-index: 3;
+}
+
+.kouch__arm--left {
+  left: -8px;
+  border-radius: 10px 4px 4px 10px;
+}
+
+.kouch__arm--right {
+  right: -8px;
+  border-radius: 4px 10px 10px 4px;
 }
 
 /* ===== DANCE FLOOR ===== */
@@ -835,9 +883,16 @@ body {
     padding: 8px 14px 0;
   }
 
-  .scene-box {
+  .kouch {
     width: 180px;
-    height: 55px;
+  }
+
+  .kouch__back {
+    width: 164px;
+  }
+
+  .kouch__seat {
+    width: 180px;
   }
 
   .dancefloor__surface {
@@ -877,9 +932,16 @@ body {
     width: 16px;
   }
 
-  .scene-box {
+  .kouch {
     width: 160px;
-    height: 50px;
+  }
+
+  .kouch__back {
+    width: 144px;
+  }
+
+  .kouch__seat {
+    width: 160px;
   }
 
   .dancefloor__surface {
