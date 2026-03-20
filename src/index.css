@@ -713,7 +713,7 @@ body {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--gold);
+  background: rgb(200, 60, 60);
   flex-shrink: 0;
 }
 
@@ -737,7 +737,7 @@ body {
 }
 
 .modal__guest--empty .modal__guest-dot {
-  background: var(--text-dim);
+  background: rgb(60, 160, 60);
 }
 
 /* ===== LEGEND ===== */
