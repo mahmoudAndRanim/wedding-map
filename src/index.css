@@ -319,7 +319,7 @@ body {
 .tables-area {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 32px;
   padding: 48px 24px 0;
   position: relative;
 }
@@ -352,7 +352,7 @@ body {
 .table-row__left,
 .table-row__right {
   display: flex;
-  gap: 14px;
+  gap: 24px;
   flex: 1;
 }
 
