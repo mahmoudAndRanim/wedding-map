@@ -27,19 +27,7 @@ function Table({ table, isActive, onClick }) {
       )}
       <div className="table__surface">
         <div className="table__info">
-          {isFamily ? (
-            <>
-              <span className="table__family-icon">👨‍👩‍👧‍👦</span>
-              <span className="table__family-name">{table.familyName}</span>
-            </>
-          ) : (
-            <>
-              <span className="table__number">{table.id}</span>
-              <span className="table__status">
-                {isFull ? 'Fullt' : isEmpty ? 'Ledig' : `${filled}/${CHAIRS_PER_TABLE}`}
-              </span>
-            </>
-          )}
+          <span className="table__number">{isFamily ? table.familyName : table.id}</span>
         </div>
       </div>
     </motion.div>

@@ -461,31 +461,35 @@ body {
   gap: 1px;
 }
 
-.table__status {
-  font-family: var(--font-body);
-  font-size: 0.55rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--gold);
-  line-height: 1;
+/* Status colors — surface background tint */
+.table--full .table__surface {
+  background:
+    radial-gradient(circle at 35% 30%, rgba(220,80,80,0.85) 0%, rgba(200,60,60,0.75) 50%, rgba(180,50,50,0.7) 100%);
+  border-color: rgba(180,50,50,0.4);
 }
 
-/* Status colors */
-.table--full .table__status {
-  color: #8B6B4A;
+.table--full .table__number {
+  color: #fff;
 }
 
-.table--available .table__status {
-  color: #6B8E5A;
+.table--available .table__surface {
+  background:
+    radial-gradient(circle at 35% 30%, rgba(230,190,60,0.85) 0%, rgba(210,170,40,0.75) 50%, rgba(190,155,30,0.7) 100%);
+  border-color: rgba(190,155,30,0.4);
 }
 
-.table--empty .table__status {
-  color: var(--text-dim);
+.table--available .table__number {
+  color: #3D3228;
 }
 
 .table--empty .table__surface {
-  opacity: 0.55;
+  background:
+    radial-gradient(circle at 35% 30%, rgba(80,180,80,0.85) 0%, rgba(60,160,60,0.75) 50%, rgba(50,140,50,0.7) 100%);
+  border-color: rgba(50,140,50,0.4);
+}
+
+.table--empty .table__number {
+  color: #fff;
 }
 
 /* Family table */
@@ -503,24 +507,14 @@ body {
     inset 0 2px 6px rgba(255, 255, 255, 0.6);
 }
 
-.table--family:hover {
-  transform: none;
-}
-
-.table__family-icon {
-  font-size: 0.9rem;
-  line-height: 1;
-}
-
-.table__family-name {
-  font-family: var(--font-body);
-  font-size: 0.5rem;
+.table--family .table__number {
+  font-size: 0.55rem;
   font-weight: 600;
   color: var(--gold-deep);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  text-align: center;
-  line-height: 1.2;
+}
+
+.table--family:hover {
+  transform: none;
 }
 
 /* Chairs around the table */
@@ -752,21 +746,16 @@ body {
   border-radius: 50%;
 }
 
-.legend__dot--occupied {
-  background: radial-gradient(circle at 40% 35%, #B89E6A, #8A7650);
+.legend__dot--green {
+  background: rgb(60,160,60);
 }
 
-.legend__dot--free {
-  background: #ccc;
-  opacity: 0.5;
+.legend__dot--yellow {
+  background: rgb(210,170,40);
 }
 
-.legend__dot--available {
-  background: #6B8E5A;
-}
-
-.legend__dot--full {
-  background: #8B6B4A;
+.legend__dot--red {
+  background: rgb(200,60,60);
 }
 
 /* ===== LOADING ===== */
