@@ -837,11 +837,11 @@ body {
 
   .table-row__left,
   .table-row__right {
-    gap: 8px;
+    gap: 18px;
   }
 
   .tables-area {
-    gap: 14px;
+    gap: 22px;
     padding: 8px 14px 0;
   }
 
@@ -911,12 +911,12 @@ body {
   }
 
   .tables-area {
-    gap: 10px;
+    gap: 16px;
     padding: 6px 10px 0;
   }
 
   .table-row__left,
   .table-row__right {
-    gap: 6px;
+    gap: 12px;
   }
 }
