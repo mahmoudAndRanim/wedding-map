@@ -278,15 +278,15 @@ body {
 
 .dancefloor {
   width: 100%;
-  padding: 16px 40px 16px;
+  padding: 20px 30px 24px;
   display: flex;
   justify-content: center;
 }
 
 .dancefloor__surface {
-  width: 70%;
-  max-width: 340px;
-  height: 90px;
+  width: 85%;
+  max-width: 440px;
+  height: 120px;
   border-radius: 12px;
   background:
     repeating-conic-gradient(
@@ -744,7 +744,7 @@ body {
   }
 
   .dancefloor__surface {
-    height: 70px;
+    height: 95px;
   }
 
   .hall {
@@ -793,7 +793,7 @@ body {
   }
 
   .dancefloor__surface {
-    height: 56px;
+    height: 75px;
   }
 
   .tables-area {
