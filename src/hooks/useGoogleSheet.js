@@ -14,10 +14,10 @@ function parseCSV(text) {
   const lines = text.split('\n').filter((l) => l.trim())
   if (lines.length < 2) return []
 
-  const rows = []
+  const tables = []
   for (let i = 1; i < lines.length; i++) {
     const line = lines[i]
-    // Simple CSV parse handling quoted fields
+    // Parse CSV row handling quoted fields
     const cols = []
     let current = ''
     let inQuotes = false
@@ -40,38 +40,29 @@ function parseCSV(text) {
     cols.push(current.trim())
 
     const tableNum = parseInt(cols[0], 10)
-    const name = cols[1] || ''
-    if (!isNaN(tableNum) && name) {
-      rows.push({ tableNum, name })
+    if (isNaN(tableNum)) continue
+
+    // Column B onwards: comma-separated guest names (or multiple columns)
+    const guestStr = cols.slice(1).join(',')
+    const guests = guestStr
+      .split(',')
+      .map((n) => n.trim())
+      .filter(Boolean)
+      .slice(0, 8)
+
+    // Pad to 8
+    while (guests.length < 8) {
+      guests.push('')
     }
+
+    tables.push({
+      id: tableNum,
+      label: `Bord ${tableNum}`,
+      guests,
+    })
   }
-  return rows
-}
 
-function groupIntoTables(rows) {
-  const map = {}
-  rows.forEach(({ tableNum, name }) => {
-    if (!map[tableNum]) {
-      map[tableNum] = {
-        id: tableNum,
-        label: `Bord ${tableNum}`,
-        guests: [],
-      }
-    }
-    if (map[tableNum].guests.length < 8) {
-      map[tableNum].guests.push(name)
-    }
-  })
-
-  // Pad each table to exactly 8 seats
-  Object.values(map).forEach((table) => {
-    while (table.guests.length < 8) {
-      table.guests.push('')
-    }
-  })
-
-  // Return sorted by table number
-  return Object.values(map).sort((a, b) => a.id - b.id)
+  return tables.sort((a, b) => a.id - b.id)
 }
 
 export default function useGoogleSheet() {
@@ -88,9 +79,9 @@ export default function useGoogleSheet() {
         return res.text()
       })
       .then((csv) => {
-        const rows = parseCSV(csv)
-        if (rows.length > 0) {
-          setTables(groupIntoTables(rows))
+        const parsed = parseCSV(csv)
+        if (parsed.length > 0) {
+          setTables(parsed)
         }
         setLoading(false)
       })
