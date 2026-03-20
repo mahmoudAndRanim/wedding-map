@@ -100,8 +100,9 @@ body {
   max-width: 720px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 20px 4px 12px;
+  position: relative;
 }
 
 .navbar__title {
@@ -110,6 +111,16 @@ body {
   font-weight: 500;
   color: var(--text);
   letter-spacing: 0.04em;
+}
+
+.navbar .lang-toggle {
+  position: absolute;
+  right: 4px;
+}
+
+.rtl .navbar .lang-toggle {
+  right: auto;
+  left: 4px;
 }
 
 /* ===== HALL CONTAINER ===== */
