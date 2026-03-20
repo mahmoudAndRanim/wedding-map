@@ -818,8 +818,8 @@ body {
 
 @media (max-width: 560px) {
   .table {
-    width: 105px;
-    height: 105px;
+    width: 85px;
+    height: 85px;
   }
 
   .table__number {
@@ -877,8 +877,8 @@ body {
 
 @media (max-width: 400px) {
   .table {
-    width: 90px;
-    height: 90px;
+    width: 70px;
+    height: 70px;
   }
 
   .table__number {
