@@ -3,7 +3,7 @@ import fallbackTables from '../data/tables'
 
 // Replace this with your Google Sheet ID
 // The sheet must be published: File → Share → Publish to web → Entire Document → CSV
-const SHEET_ID = '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgVE2upms'
+const SHEET_ID = '1d5qE7KKDYrCZR2JLqJYpw7Lt_TJlXfEeHWoCt70c_SY'
 const SHEET_GID = '0' // First sheet tab
 
 function buildUrl(sheetId, gid) {
