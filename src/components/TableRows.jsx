@@ -27,9 +27,10 @@ function Table({ table, isActive, onClick }) {
       )}
       <div className="table__surface">
         <div className="table__info">
-          <span className="table__number">{isFamily ? table.familyName : table.id}</span>
+          <span className="table__number">{table.id}</span>
         </div>
       </div>
+      {isFamily && <span className="table__label-below">{table.familyName}</span>}
     </motion.div>
   )
 }
