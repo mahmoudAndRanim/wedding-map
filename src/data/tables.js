@@ -5,14 +5,14 @@ const tables = [
     id: 1,
     label: 'Bord 1',
     family: true,
-    familyName: 'Fam. Brudgommen',
+    familyName: 'Fam. Abouchandi',
     guests: [],
   },
   {
     id: 2,
     label: 'Bord 2',
     family: true,
-    familyName: 'Fam. Bruden',
+    familyName: 'Fam. Hussein',
     guests: [],
   },
   {
