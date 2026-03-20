@@ -357,19 +357,10 @@ body {
 }
 
 .table-row__left {
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 
 .table-row__right {
-  justify-content: flex-start;
-}
-
-/* First row: tables pushed to the outer walls, away from aisle */
-.table-row--narrow .table-row__left {
-  justify-content: flex-start;
-}
-
-.table-row--narrow .table-row__right {
   justify-content: flex-end;
 }
 
