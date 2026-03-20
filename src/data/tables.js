@@ -4,18 +4,16 @@ const tables = [
   {
     id: 1,
     label: 'Bord 1',
-    guests: [
-      'سميره مراد', 'سميره', 'ساره', 'Mohammad Husein',
-      'Aseel Murad', 'Maher', 'نغم اخت العروس', 'Baraa mohamed',
-    ],
+    family: true,
+    familyName: 'Fam. Brudgommen',
+    guests: [],
   },
   {
     id: 2,
     label: 'Bord 2',
-    guests: [
-      'Hourieh Awad', 'AmalAwad', 'بيسان عوض', 'Nour nasif',
-      'Nifin nasif', 'Kosay', 'Seham', '',
-    ],
+    family: true,
+    familyName: 'Fam. Bruden',
+    guests: [],
   },
   {
     id: 3,

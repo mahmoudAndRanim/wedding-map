@@ -3,31 +3,43 @@ import { motion } from 'framer-motion'
 const CHAIRS_PER_TABLE = 8
 
 function Table({ table, isActive, onClick }) {
-  const filled = table.guests.filter((g) => g).length
-  const isFull = filled >= CHAIRS_PER_TABLE
-  const isEmpty = filled === 0
-  const statusClass = isFull ? ' table--full' : isEmpty ? ' table--empty' : ' table--available'
+  const isFamily = table.family
+  const filled = isFamily ? 0 : table.guests.filter((g) => g).length
+  const isFull = !isFamily && filled >= CHAIRS_PER_TABLE
+  const isEmpty = !isFamily && filled === 0
+  const statusClass = isFamily ? ' table--family' : isFull ? ' table--full' : isEmpty ? ' table--empty' : ' table--available'
 
   return (
     <motion.div
       className={`table${isActive ? ' table--active' : ''}${statusClass}`}
-      onClick={() => onClick(table)}
+      onClick={() => !isFamily && onClick(table)}
       initial={{ opacity: 0, scale: 0.7 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.4, delay: table.id * 0.04, type: 'spring', stiffness: 200 }}
-      whileTap={{ scale: 0.95 }}
+      whileTap={isFamily ? {} : { scale: 0.95 }}
     >
-      <div className="table__chairs">
-        {Array.from({ length: CHAIRS_PER_TABLE }).map((_, i) => (
-          <div key={i} className={`chair${i < filled ? ' chair--occupied' : ''}`} />
-        ))}
-      </div>
+      {!isFamily && (
+        <div className="table__chairs">
+          {Array.from({ length: CHAIRS_PER_TABLE }).map((_, i) => (
+            <div key={i} className={`chair${i < filled ? ' chair--occupied' : ''}`} />
+          ))}
+        </div>
+      )}
       <div className="table__surface">
         <div className="table__info">
-          <span className="table__number">{table.id}</span>
-          <span className="table__status">
-            {isFull ? 'Fullt' : isEmpty ? 'Ledig' : `${filled}/${CHAIRS_PER_TABLE}`}
-          </span>
+          {isFamily ? (
+            <>
+              <span className="table__family-icon">👨‍👩‍👧‍👦</span>
+              <span className="table__family-name">{table.familyName}</span>
+            </>
+          ) : (
+            <>
+              <span className="table__number">{table.id}</span>
+              <span className="table__status">
+                {isFull ? 'Fullt' : isEmpty ? 'Ledig' : `${filled}/${CHAIRS_PER_TABLE}`}
+              </span>
+            </>
+          )}
         </div>
       </div>
     </motion.div>

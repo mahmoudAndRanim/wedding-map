@@ -488,6 +488,41 @@ body {
   opacity: 0.55;
 }
 
+/* Family table */
+.table--family {
+  cursor: default;
+}
+
+.table--family .table__surface {
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255,248,235,0.98) 0%, rgba(250,240,220,0.95) 50%, rgba(245,235,210,0.92) 100%);
+  border-color: var(--gold);
+  box-shadow:
+    var(--shadow-table),
+    0 0 16px rgba(138, 118, 80, 0.12),
+    inset 0 2px 6px rgba(255, 255, 255, 0.6);
+}
+
+.table--family:hover {
+  transform: none;
+}
+
+.table__family-icon {
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+.table__family-name {
+  font-family: var(--font-body);
+  font-size: 0.5rem;
+  font-weight: 600;
+  color: var(--gold-deep);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: center;
+  line-height: 1.2;
+}
+
 /* Chairs around the table */
 .table__chairs {
   position: absolute;
