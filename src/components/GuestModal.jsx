@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { useEffect } from 'react'
 
-export default function GuestModal({ table, onClose }) {
+export default function GuestModal({ table, onClose, t }) {
   // Close on Escape key
   useEffect(() => {
     const handler = (e) => {
@@ -33,8 +33,8 @@ export default function GuestModal({ table, onClose }) {
         </button>
 
         <div className="modal__icon">🪑</div>
-        <h2 className="modal__title">{table.label}</h2>
-        <p className="modal__seats">{table.guests.length} plasser</p>
+        <h2 className="modal__title">{t.bord} {table.id}</h2>
+        <p className="modal__seats">{table.guests.length} {t.plasser}</p>
 
         <ul className="modal__list">
           {table.guests.map((guest, i) => (
@@ -46,8 +46,8 @@ export default function GuestModal({ table, onClose }) {
               transition={{ delay: i * 0.04, duration: 0.25 }}
             >
               <span className="modal__guest-dot" />
-              <span className="modal__guest-name">{guest || 'Ledig'}</span>
-              <span className="modal__guest-seat">Plass {i + 1}</span>
+              <span className="modal__guest-name">{guest || t.ledig}</span>
+              <span className="modal__guest-seat">{t.plass} {i + 1}</span>
             </motion.li>
           ))}
         </ul>

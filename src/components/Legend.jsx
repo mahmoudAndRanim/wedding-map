@@ -1,17 +1,17 @@
-export default function Legend() {
+export default function Legend({ t }) {
   return (
     <div className="legend">
       <div className="legend__item">
         <span className="legend__dot legend__dot--green" />
-        Ledig
+        {t.ledig}
       </div>
       <div className="legend__item">
         <span className="legend__dot legend__dot--yellow" />
-        Har plass
+        {t.harPlass}
       </div>
       <div className="legend__item">
         <span className="legend__dot legend__dot--red" />
-        Fullt
+        {t.fullt}
       </div>
     </div>
   )
