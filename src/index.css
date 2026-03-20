@@ -11,18 +11,26 @@
 :root {
   --bg: #ECE7D1;
   --bg-dark: #E4DDCA;
+  --bg-floor: #E8E2CC;
   --text: #3D3228;
   --text-dim: rgba(61, 50, 40, 0.68);
   --gold: #8A7650;
   --gold-soft: #9E8D62;
   --gold-deep: #5C4F35;
   --gold-glow: rgba(138, 118, 80, 0.15);
+  --gold-shimmer: rgba(138, 118, 80, 0.08);
   --rose-gold: #8E977D;
-  --card-bg: rgba(255, 255, 255, 0.85);
-  --card-bg-hover: rgba(255, 255, 255, 0.95);
+  --card-bg: rgba(255, 255, 255, 0.88);
+  --card-bg-hover: rgba(255, 255, 255, 0.96);
+  --curtain: #6B2D3E;
+  --curtain-dark: #4A1F2B;
+  --stage-wood: #C4A96A;
+  --stage-wood-dark: #A68B4B;
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 8px 28px rgba(0, 0, 0, 0.14), 0 3px 10px rgba(0, 0, 0, 0.08);
+  --shadow-table: 0 4px 12px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-table-hover: 0 8px 24px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.08);
   --radius: 12px;
   --radius-lg: 20px;
   --font-heading: 'Cormorant Garamond', Georgia, serif;
@@ -100,32 +108,54 @@ body {
 .hall {
   position: relative;
   width: 100%;
-  max-width: 700px;
+  max-width: 720px;
   margin: 20px auto 0;
-  background:
-    radial-gradient(ellipse 90% 50% at 50% 0%, var(--gold-glow) 0%, transparent 60%),
-    linear-gradient(180deg, var(--bg) 0%, var(--bg-dark) 100%);
+  background: var(--bg-floor);
   border-radius: var(--radius-lg);
-  border: 1px solid rgba(138, 118, 80, 0.15);
-  box-shadow: var(--shadow-lg);
+  border: 2px solid rgba(138, 118, 80, 0.18);
+  box-shadow:
+    var(--shadow-lg),
+    inset 0 0 60px rgba(138, 118, 80, 0.06);
   overflow: hidden;
-  padding: 0 0 40px;
+  padding: 0 0 44px;
 }
 
-/* Botanical dot pattern overlay */
+/* Wooden floor texture */
 .hall::before {
   content: '';
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.35;
+  opacity: 0.4;
   background:
-    radial-gradient(circle at 15% 20%, rgba(130, 150, 120, 0.12) 2px, transparent 2px),
-    radial-gradient(circle at 85% 30%, rgba(130, 150, 120, 0.10) 1.5px, transparent 1.5px),
-    radial-gradient(circle at 50% 80%, rgba(130, 150, 120, 0.08) 2px, transparent 2px),
-    radial-gradient(circle at 30% 60%, rgba(130, 150, 120, 0.06) 1px, transparent 1px),
-    radial-gradient(circle at 70% 10%, rgba(130, 150, 120, 0.10) 1.5px, transparent 1.5px);
-  background-size: 100% 100%;
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 48px,
+      rgba(138, 118, 80, 0.04) 48px,
+      rgba(138, 118, 80, 0.04) 49px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 120px,
+      rgba(138, 118, 80, 0.03) 120px,
+      rgba(138, 118, 80, 0.03) 121px
+    );
+  z-index: 0;
+}
+
+/* Subtle wall shadow edges */
+.hall::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow:
+    inset 6px 0 20px rgba(0, 0, 0, 0.04),
+    inset -6px 0 20px rgba(0, 0, 0, 0.04),
+    inset 0 -8px 20px rgba(0, 0, 0, 0.03);
+  border-radius: var(--radius-lg);
   z-index: 0;
 }
 
@@ -140,29 +170,173 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 32px 20px 24px;
-  background: linear-gradient(180deg, rgba(138, 118, 80, 0.10) 0%, transparent 100%);
-  border-bottom: 1px solid rgba(138, 118, 80, 0.12);
+}
+
+.stage__platform {
+  position: relative;
+  width: 100%;
+  padding: 40px 40px 28px;
+  background:
+    radial-gradient(ellipse 80% 100% at 50% 0%, rgba(138, 118, 80, 0.12) 0%, transparent 70%),
+    linear-gradient(180deg, #F0EBDA 0%, var(--bg-floor) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Curtain left */
+.stage__curtain-left,
+.stage__curtain-right {
+  position: absolute;
+  top: 0;
+  width: 40px;
+  height: 100%;
+  z-index: 2;
+}
+
+.stage__curtain-left {
+  left: 0;
+  background: linear-gradient(90deg,
+    var(--curtain) 0%,
+    var(--curtain-dark) 30%,
+    var(--curtain) 50%,
+    var(--curtain-dark) 70%,
+    rgba(107, 45, 62, 0.3) 100%
+  );
+  border-radius: 0 0 40px 0;
+  box-shadow: 4px 0 12px rgba(0, 0, 0, 0.15);
+}
+
+.stage__curtain-right {
+  right: 0;
+  background: linear-gradient(270deg,
+    var(--curtain) 0%,
+    var(--curtain-dark) 30%,
+    var(--curtain) 50%,
+    var(--curtain-dark) 70%,
+    rgba(107, 45, 62, 0.3) 100%
+  );
+  border-radius: 0 0 0 40px;
+  box-shadow: -4px 0 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Curtain drape folds */
+.stage__curtain-left::before,
+.stage__curtain-right::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 8px,
+    rgba(0, 0, 0, 0.08) 8px,
+    rgba(0, 0, 0, 0.08) 12px
+  );
+}
+
+/* Spotlights */
+.stage__spotlight {
+  position: absolute;
+  top: 0;
+  width: 120px;
+  height: 140px;
+  opacity: 0.5;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.stage__spotlight--left {
+  left: 30px;
+  background: radial-gradient(ellipse 100% 100% at 0% 0%, rgba(255, 240, 200, 0.25) 0%, transparent 70%);
+}
+
+.stage__spotlight--right {
+  right: 30px;
+  background: radial-gradient(ellipse 100% 100% at 100% 0%, rgba(255, 240, 200, 0.25) 0%, transparent 70%);
+}
+
+.stage__content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .stage__icon {
-  font-size: 2rem;
+  font-size: 2.2rem;
   margin-bottom: 6px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
 }
 
 .stage__label {
   font-family: var(--font-heading);
-  font-size: clamp(1.1rem, 3vw, 1.4rem);
-  font-weight: 500;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  font-weight: 600;
   color: var(--gold-deep);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .stage__sub {
   font-family: var(--font-accent);
-  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
   color: var(--gold);
   margin-top: 2px;
+}
+
+/* Stage front edge (wooden lip) */
+.stage__edge {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: linear-gradient(180deg, var(--stage-wood) 0%, var(--stage-wood-dark) 100%);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  z-index: 4;
+}
+
+/* Spacer between stage and tables (dance floor / open area) */
+.stage__spacer {
+  position: relative;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.stage__floor-pattern {
+  width: 80%;
+  max-width: 320px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(138, 118, 80, 0.2), transparent);
+  position: relative;
+}
+
+.stage__floor-pattern::before,
+.stage__floor-pattern::after {
+  content: '✦';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.55rem;
+  color: var(--gold);
+  opacity: 0.4;
+}
+
+.stage__floor-pattern::before {
+  left: -12px;
+}
+
+.stage__floor-pattern::after {
+  right: -12px;
 }
 
 /* ===== TABLE GRID ===== */
@@ -170,8 +344,25 @@ body {
 .tables-area {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 28px 20px 0;
+  gap: 20px;
+  padding: 8px 24px 0;
+  position: relative;
+}
+
+/* Continuous aisle line */
+.aisle-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 28px;
+  transform: translateX(-50%);
+  background:
+    linear-gradient(180deg, transparent 0%, rgba(138, 118, 80, 0.06) 10%, rgba(138, 118, 80, 0.06) 90%, transparent 100%);
+  border-left: 1px dashed rgba(138, 118, 80, 0.12);
+  border-right: 1px dashed rgba(138, 118, 80, 0.12);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .table-row {
@@ -179,12 +370,14 @@ body {
   justify-content: center;
   gap: 0;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
 .table-row__left,
 .table-row__right {
   display: flex;
-  gap: 12px;
+  gap: 14px;
   flex: 1;
 }
 
@@ -196,84 +389,93 @@ body {
   justify-content: flex-start;
 }
 
-/* Aisle */
+/* Aisle gap in each row */
 .aisle {
-  width: 48px;
-  min-width: 48px;
+  width: 52px;
+  min-width: 52px;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
 }
 
-.aisle::before {
-  content: '';
-  position: absolute;
-  top: -8px;
-  bottom: -8px;
-  width: 2px;
-  background: linear-gradient(180deg, transparent, rgba(138, 118, 80, 0.15), transparent);
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-/* ===== TABLE (round) ===== */
+/* ===== TABLE (round, realistic) ===== */
 
 .table {
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 110px;
+  height: 110px;
   cursor: pointer;
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .table:hover {
   transform: scale(1.08);
+  z-index: 2;
 }
 
 .table:active {
   transform: scale(0.97);
 }
 
+/* Tablecloth (outer ring/shadow) */
 .table__surface {
   position: absolute;
-  inset: 12px;
+  inset: 14px;
   border-radius: 50%;
-  background: var(--card-bg);
-  border: 2px solid rgba(138, 118, 80, 0.2);
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 50%, rgba(245,240,230,0.9) 100%);
+  border: 2px solid rgba(138, 118, 80, 0.18);
   box-shadow:
-    var(--shadow-sm),
-    inset 0 1px 3px rgba(255, 255, 255, 0.5);
+    var(--shadow-table),
+    inset 0 2px 6px rgba(255, 255, 255, 0.6),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.04);
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
 }
 
+/* Tablecloth drape shadow */
+.table__surface::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+  z-index: -1;
+}
+
 .table:hover .table__surface {
-  background: var(--card-bg-hover);
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255,255,255,1) 0%, rgba(255,255,255,0.95) 50%, rgba(250,245,235,0.95) 100%);
   border-color: var(--gold);
   box-shadow:
-    var(--shadow-md),
-    0 0 20px var(--gold-glow),
-    inset 0 1px 3px rgba(255, 255, 255, 0.5);
+    var(--shadow-table-hover),
+    0 0 24px var(--gold-glow),
+    inset 0 2px 6px rgba(255, 255, 255, 0.7),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.04);
 }
 
 .table--active .table__surface {
-  background: var(--card-bg-hover);
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255,255,255,1) 0%, rgba(255,255,255,0.95) 50%, rgba(250,245,235,0.95) 100%);
   border-color: var(--gold);
   box-shadow:
-    var(--shadow-md),
-    0 0 24px var(--gold-glow),
-    inset 0 1px 3px rgba(255, 255, 255, 0.5);
+    var(--shadow-table-hover),
+    0 0 30px rgba(138, 118, 80, 0.2),
+    inset 0 2px 6px rgba(255, 255, 255, 0.7),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.04);
 }
 
 .table__number {
   font-family: var(--font-heading);
-  font-size: 1.3rem;
+  font-size: 1.35rem;
   font-weight: 600;
   color: var(--gold-deep);
   user-select: none;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
 }
 
 /* Chairs around the table */
@@ -284,40 +486,56 @@ body {
 
 .chair {
   position: absolute;
-  width: 10px;
-  height: 10px;
+  width: 13px;
+  height: 13px;
   border-radius: 50%;
-  background: var(--gold);
-  opacity: 0.35;
-  transition: opacity 0.3s ease, background 0.3s ease;
+  background:
+    radial-gradient(circle at 40% 35%, #B89E6A, #8A7650, #6B5A3A);
+  border: 1px solid rgba(107, 90, 58, 0.3);
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.12),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  opacity: 0.7;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .table:hover .chair {
-  opacity: 0.6;
+  opacity: 0.9;
+  transform: scale(1.05);
 }
 
 .table--active .chair {
-  opacity: 0.7;
-  background: var(--gold-deep);
+  opacity: 1;
 }
 
 /* Position 8 chairs around a circle */
-.chair:nth-child(1) { top: 0; left: 50%; transform: translate(-50%, -50%); }
-.chair:nth-child(2) { top: 14.6%; right: 14.6%; transform: translate(50%, -50%); }
-.chair:nth-child(3) { top: 50%; right: 0; transform: translate(50%, -50%); }
-.chair:nth-child(4) { bottom: 14.6%; right: 14.6%; transform: translate(50%, 50%); }
-.chair:nth-child(5) { bottom: 0; left: 50%; transform: translate(-50%, 50%); }
-.chair:nth-child(6) { bottom: 14.6%; left: 14.6%; transform: translate(-50%, 50%); }
-.chair:nth-child(7) { top: 50%; left: 0; transform: translate(-50%, -50%); }
-.chair:nth-child(8) { top: 14.6%; left: 14.6%; transform: translate(-50%, -50%); }
+.chair:nth-child(1) { top: 2%; left: 50%; transform: translate(-50%, -50%); }
+.chair:nth-child(2) { top: 15%; right: 15%; transform: translate(50%, -50%); }
+.chair:nth-child(3) { top: 50%; right: 2%; transform: translate(50%, -50%); }
+.chair:nth-child(4) { bottom: 15%; right: 15%; transform: translate(50%, 50%); }
+.chair:nth-child(5) { bottom: 2%; left: 50%; transform: translate(-50%, 50%); }
+.chair:nth-child(6) { bottom: 15%; left: 15%; transform: translate(-50%, 50%); }
+.chair:nth-child(7) { top: 50%; left: 2%; transform: translate(-50%, -50%); }
+.chair:nth-child(8) { top: 15%; left: 15%; transform: translate(-50%, -50%); }
 
-/* ===== EXTRA TABLES ROW (at bottom, for 13th table or odd extras) ===== */
+.table:hover .chair:nth-child(1) { transform: translate(-50%, -50%) scale(1.05); }
+.table:hover .chair:nth-child(2) { transform: translate(50%, -50%) scale(1.05); }
+.table:hover .chair:nth-child(3) { transform: translate(50%, -50%) scale(1.05); }
+.table:hover .chair:nth-child(4) { transform: translate(50%, 50%) scale(1.05); }
+.table:hover .chair:nth-child(5) { transform: translate(-50%, 50%) scale(1.05); }
+.table:hover .chair:nth-child(6) { transform: translate(-50%, 50%) scale(1.05); }
+.table:hover .chair:nth-child(7) { transform: translate(-50%, -50%) scale(1.05); }
+.table:hover .chair:nth-child(8) { transform: translate(-50%, -50%) scale(1.05); }
+
+/* ===== EXTRA TABLES ROW ===== */
 
 .tables-extra {
   display: flex;
   justify-content: center;
-  padding-top: 20px;
-  gap: 16px;
+  padding-top: 16px;
+  gap: 20px;
+  position: relative;
+  z-index: 1;
 }
 
 /* ===== GUEST MODAL / PANEL ===== */
@@ -325,9 +543,9 @@ body {
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(61, 50, 40, 0.35);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  background: rgba(61, 50, 40, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   z-index: 100;
   display: flex;
   align-items: center;
@@ -336,10 +554,10 @@ body {
 }
 
 .modal {
-  background: var(--bg);
+  background: linear-gradient(180deg, #F5F1E6 0%, var(--bg) 100%);
   border-radius: var(--radius-lg);
   border: 1px solid rgba(138, 118, 80, 0.2);
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-lg), 0 0 40px rgba(138, 118, 80, 0.08);
   width: 100%;
   max-width: 380px;
   padding: 32px 28px 28px;
@@ -354,7 +572,7 @@ body {
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  background: linear-gradient(90deg, transparent 10%, var(--gold) 50%, transparent 90%);
 }
 
 .modal__close {
@@ -511,24 +729,28 @@ body {
 
 /* ===== RESPONSIVE ===== */
 
-@media (max-width: 500px) {
+@media (max-width: 560px) {
   .table {
-    width: 80px;
-    height: 80px;
+    width: 85px;
+    height: 85px;
   }
 
   .table__number {
-    font-size: 1.05rem;
+    font-size: 1.1rem;
   }
 
   .chair {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
   }
 
   .aisle {
-    width: 32px;
-    min-width: 32px;
+    width: 36px;
+    min-width: 36px;
+  }
+
+  .aisle-line {
+    width: 20px;
   }
 
   .table-row__left,
@@ -537,12 +759,21 @@ body {
   }
 
   .tables-area {
-    gap: 12px;
-    padding: 20px 12px 0;
+    gap: 14px;
+    padding: 8px 14px 0;
   }
 
-  .stage {
-    padding: 24px 16px 18px;
+  .stage__platform {
+    padding: 28px 28px 22px;
+  }
+
+  .stage__curtain-left,
+  .stage__curtain-right {
+    width: 28px;
+  }
+
+  .stage__spacer {
+    height: 50px;
   }
 
   .hall {
@@ -554,23 +785,46 @@ body {
   }
 }
 
-@media (max-width: 380px) {
+@media (max-width: 400px) {
   .table {
-    width: 66px;
-    height: 66px;
+    width: 70px;
+    height: 70px;
   }
 
   .table__number {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
   }
 
   .chair {
-    width: 7px;
-    height: 7px;
+    width: 8px;
+    height: 8px;
   }
 
   .aisle {
-    width: 24px;
-    min-width: 24px;
+    width: 26px;
+    min-width: 26px;
+  }
+
+  .aisle-line {
+    width: 16px;
+  }
+
+  .stage__curtain-left,
+  .stage__curtain-right {
+    width: 20px;
+  }
+
+  .stage__spacer {
+    height: 40px;
+  }
+
+  .tables-area {
+    gap: 10px;
+    padding: 6px 10px 0;
+  }
+
+  .table-row__left,
+  .table-row__right {
+    gap: 6px;
   }
 }

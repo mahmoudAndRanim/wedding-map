@@ -105,6 +105,14 @@ const tables = [
       'Gjest 13-5', 'Gjest 13-6', 'Gjest 13-7', 'Gjest 13-8',
     ],
   },
+  {
+    id: 14,
+    label: 'Bord 14',
+    guests: [
+      'Gjest 14-1', 'Gjest 14-2', 'Gjest 14-3', 'Gjest 14-4',
+      'Gjest 14-5', 'Gjest 14-6', 'Gjest 14-7', 'Gjest 14-8',
+    ],
+  },
 ]
 
 export default tables

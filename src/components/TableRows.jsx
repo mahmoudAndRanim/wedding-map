@@ -26,14 +26,10 @@ function Table({ table, isActive, onClick }) {
 
 export default function TableRows({ tables, activeTableId, onTableClick }) {
   /*
-    Layout: 13 tables total
-    - Tables 1-12: arranged in rows of 4 (2 left | aisle | 2 right)
-      Row 1 (front, near stage): tables 1, 2 | 3, 4
-      Row 2: tables 5, 6 | 7, 8
-      Row 3: tables 9, 10 | 11, 12
-    - Table 13: centered at bottom
-    
-    Numbering: 1 starts at front (near stage), goes left-to-right, row by row
+    Layout: 14 tables
+    - 12 tables in 3 rows of 4 (2 left | aisle | 2 right)
+    - 2 extra tables centered at the bottom
+    Numbering starts at 1 near the stage
   */
 
   const rows = [
@@ -47,6 +43,9 @@ export default function TableRows({ tables, activeTableId, onTableClick }) {
 
   return (
     <div className="tables-area">
+      {/* Aisle runs continuously */}
+      <div className="aisle-line" />
+
       {rows.map((row, ri) => (
         <div className="table-row" key={ri}>
           <div className="table-row__left">
@@ -73,11 +72,16 @@ export default function TableRows({ tables, activeTableId, onTableClick }) {
         </div>
       ))}
 
-      {/* Table 13 centered */}
+      {/* Tables 13 & 14 */}
       <div className="tables-extra">
         <Table
           table={tableMap[13]}
           isActive={activeTableId === 13}
+          onClick={onTableClick}
+        />
+        <Table
+          table={tableMap[14]}
+          isActive={activeTableId === 14}
           onClick={onTableClick}
         />
       </div>
