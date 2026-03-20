@@ -81,7 +81,21 @@ export default function useGoogleSheet() {
       .then((csv) => {
         const parsed = parseCSV(csv)
         if (parsed.length > 0) {
-          setTables(parsed)
+          // Preserve family table flags from fallback data
+          const familyMap = {}
+          fallbackTables.forEach((t) => {
+            if (t.family) familyMap[t.id] = t
+          })
+          const merged = parsed.map((t) =>
+            familyMap[t.id] ? { ...t, family: true, familyName: familyMap[t.id].familyName, guests: [] } : t
+          )
+          // Add any fallback tables not in the sheet (e.g. empty ones)
+          const parsedIds = new Set(merged.map((t) => t.id))
+          fallbackTables.forEach((t) => {
+            if (!parsedIds.has(t.id)) merged.push(t)
+          })
+          merged.sort((a, b) => a.id - b.id)
+          setTables(merged)
         }
         setLoading(false)
       })
