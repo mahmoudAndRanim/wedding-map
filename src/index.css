@@ -635,6 +635,14 @@ body {
   font-weight: 400;
 }
 
+.modal__guest--empty {
+  opacity: 0.45;
+}
+
+.modal__guest--empty .modal__guest-dot {
+  background: var(--text-dim);
+}
+
 /* ===== LEGEND ===== */
 
 .legend {

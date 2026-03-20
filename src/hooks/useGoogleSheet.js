@@ -58,7 +58,16 @@ function groupIntoTables(rows) {
         guests: [],
       }
     }
-    map[tableNum].guests.push(name)
+    if (map[tableNum].guests.length < 8) {
+      map[tableNum].guests.push(name)
+    }
+  })
+
+  // Pad each table to exactly 8 seats
+  Object.values(map).forEach((table) => {
+    while (table.guests.length < 8) {
+      table.guests.push('')
+    }
   })
 
   // Return sorted by table number

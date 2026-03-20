@@ -40,13 +40,13 @@ export default function GuestModal({ table, onClose }) {
           {table.guests.map((guest, i) => (
             <motion.li
               key={i}
-              className="modal__guest"
+              className={`modal__guest${!guest ? ' modal__guest--empty' : ''}`}
               initial={{ opacity: 0, x: -12 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: i * 0.04, duration: 0.25 }}
             >
               <span className="modal__guest-dot" />
-              <span className="modal__guest-name">{guest}</span>
+              <span className="modal__guest-name">{guest || 'Ledig'}</span>
               <span className="modal__guest-seat">Plass {i + 1}</span>
             </motion.li>
           ))}
