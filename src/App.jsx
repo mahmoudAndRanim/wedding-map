@@ -56,19 +56,15 @@ export default function App() {
 
   return (
     <div className={`app${isArabic ? ' rtl' : ''}`}>
-      <button
-        className="lang-toggle"
-        onClick={() => setLang(lang === 'no' ? 'ar' : 'no')}
-      >
-        {t.langBtn}
-      </button>
-
-      <header className="header">
-        <div className="header__ornament">✦</div>
-        <h1 className="header__title">{t.title}</h1>
-        <p className="header__subtitle">{t.subtitle}</p>
-        <div className="header__divider" />
-      </header>
+      <nav className="navbar">
+        <h1 className="navbar__title">{t.title}</h1>
+        <button
+          className="lang-toggle"
+          onClick={() => setLang(lang === 'no' ? 'ar' : 'no')}
+        >
+          {t.langBtn}
+        </button>
+      </nav>
 
       {loading ? (
         <div className="loading">

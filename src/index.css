@@ -70,9 +70,6 @@ body {
 /* ===== LANGUAGE TOGGLE ===== */
 
 .lang-toggle {
-  position: fixed;
-  top: 1.25rem;
-  right: 1.25rem;
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -81,11 +78,10 @@ body {
   font-family: var(--font-body), 'Noto Naskh Arabic', sans-serif;
   font-size: 0.7rem;
   font-weight: 500;
-  padding: 0.6rem 1.1rem;
+  padding: 0.5rem 1rem;
   border-radius: 30px;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 100;
   box-shadow: 0 4px 20px rgba(61, 50, 40, 0.06);
   letter-spacing: 0.02em;
 }
@@ -97,50 +93,23 @@ body {
   box-shadow: 0 8px 30px rgba(61, 50, 40, 0.1);
 }
 
-.rtl .lang-toggle {
-  right: auto;
-  left: 1.25rem;
+/* ===== NAVBAR ===== */
+
+.navbar {
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 4px 12px;
 }
 
-/* ===== HEADER ===== */
-
-.header {
-  text-align: center;
-  padding: 40px 20px 20px;
-  position: relative;
-}
-
-.header__ornament {
-  font-family: var(--font-accent);
-  color: var(--gold);
-  font-size: clamp(1.4rem, 4vw, 2rem);
-  margin-bottom: 4px;
-  opacity: 0.7;
-}
-
-.header__title {
+.navbar__title {
   font-family: var(--font-heading);
-  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  font-size: clamp(1.4rem, 4vw, 1.8rem);
   font-weight: 500;
   color: var(--text);
   letter-spacing: 0.04em;
-}
-
-.header__subtitle {
-  font-family: var(--font-body);
-  font-size: clamp(0.75rem, 2vw, 0.9rem);
-  font-weight: 300;
-  color: var(--text-dim);
-  margin-top: 6px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.header__divider {
-  width: 60px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  margin: 16px auto 0;
 }
 
 /* ===== HALL CONTAINER ===== */
