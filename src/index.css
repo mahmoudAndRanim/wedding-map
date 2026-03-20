@@ -284,9 +284,9 @@ body {
 }
 
 .dancefloor__surface {
-  width: 85%;
-  max-width: 440px;
-  height: 180px;
+  width: 90%;
+  max-width: 520px;
+  height: 220px;
   border-radius: 12px;
   background:
     repeating-conic-gradient(
