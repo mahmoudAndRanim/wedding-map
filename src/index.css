@@ -461,6 +461,23 @@ body {
   gap: 1px;
 }
 
+.table__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-top: 2px;
+}
+
+.table__dot--green {
+  background: rgb(60, 160, 60);
+  box-shadow: 0 0 4px rgba(60, 160, 60, 0.5);
+}
+
+.table__dot--red {
+  background: rgb(200, 60, 60);
+  box-shadow: 0 0 4px rgba(200, 60, 60, 0.5);
+}
+
 /* Status colors — surface background tint */
 .table--full .table__surface {
   background:

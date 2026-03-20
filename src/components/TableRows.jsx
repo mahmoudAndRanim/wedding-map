@@ -28,6 +28,7 @@ function Table({ table, isActive, onClick }) {
       <div className="table__surface">
         <div className="table__info">
           <span className="table__number">{table.id}</span>
+          {!isFamily && <span className={`table__dot${isEmpty ? ' table__dot--green' : ' table__dot--red'}`} />}
         </div>
       </div>
       {isFamily && <span className="table__label-below">{table.familyName}</span>}
