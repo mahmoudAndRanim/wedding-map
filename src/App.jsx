@@ -1,12 +1,13 @@
 import { useState, useCallback } from 'react'
 import { AnimatePresence } from 'framer-motion'
-import tables from './data/tables'
+import useGoogleSheet from './hooks/useGoogleSheet'
 import Stage from './components/Stage'
 import TableRows from './components/TableRows'
 import GuestModal from './components/GuestModal'
 import Legend from './components/Legend'
 
 export default function App() {
+  const { tables, loading } = useGoogleSheet()
   const [activeTable, setActiveTable] = useState(null)
 
   const handleTableClick = useCallback((table) => {
@@ -26,10 +27,17 @@ export default function App() {
         <div className="header__divider" />
       </header>
 
-      <div className="hall">
-        <Stage />
-        <TableRows tables={tables} activeTableId={activeTable?.id} onTableClick={handleTableClick} />
-      </div>
+      {loading ? (
+        <div className="loading">
+          <div className="loading__spinner" />
+          <p className="loading__text">Laster bordkart...</p>
+        </div>
+      ) : (
+        <div className="hall">
+          <Stage />
+          <TableRows tables={tables} activeTableId={activeTable?.id} onTableClick={handleTableClick} />
+        </div>
+      )}
 
       <Legend />
 
