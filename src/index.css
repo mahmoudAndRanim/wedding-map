@@ -164,7 +164,7 @@ body {
   z-index: 1;
 }
 
-/* ===== STAGE ===== */
+/* ===== STAGE AREA (kouch + dance floor) ===== */
 
 .stage {
   display: flex;
@@ -172,171 +172,146 @@ body {
   align-items: center;
 }
 
-.stage__platform {
-  position: relative;
+/* Top area where kouch sits */
+.stage__area {
   width: 100%;
-  padding: 40px 40px 28px;
-  background:
-    radial-gradient(ellipse 80% 100% at 50% 0%, rgba(138, 118, 80, 0.12) 0%, transparent 70%),
-    linear-gradient(180deg, #F0EBDA 0%, var(--bg-floor) 100%);
+  padding: 36px 20px 20px;
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(180deg, rgba(138, 118, 80, 0.06) 0%, transparent 100%);
+}
+
+/* ===== KOUCH (centered sofa for bride & groom) ===== */
+
+.kouch {
+  position: relative;
+  width: 220px;
+  min-height: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: hidden;
 }
 
-/* Curtain left */
-.stage__curtain-left,
-.stage__curtain-right {
-  position: absolute;
-  top: 0;
-  width: 40px;
-  height: 100%;
+/* Sofa backrest */
+.kouch__back {
+  width: 200px;
+  height: 22px;
+  border-radius: 60px 60px 4px 4px;
+  background: linear-gradient(180deg, #C9B07A 0%, #B89E6A 40%, #A68B4B 100%);
+  box-shadow:
+    0 -2px 6px rgba(0, 0, 0, 0.08),
+    inset 0 2px 4px rgba(255, 255, 255, 0.25),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(138, 118, 80, 0.3);
+  border-bottom: none;
+  position: relative;
   z-index: 2;
 }
 
-.stage__curtain-left {
-  left: 0;
-  background: linear-gradient(90deg,
-    var(--curtain) 0%,
-    var(--curtain-dark) 30%,
-    var(--curtain) 50%,
-    var(--curtain-dark) 70%,
-    rgba(107, 45, 62, 0.3) 100%
-  );
-  border-radius: 0 0 40px 0;
-  box-shadow: 4px 0 12px rgba(0, 0, 0, 0.15);
-}
-
-.stage__curtain-right {
-  right: 0;
-  background: linear-gradient(270deg,
-    var(--curtain) 0%,
-    var(--curtain-dark) 30%,
-    var(--curtain) 50%,
-    var(--curtain-dark) 70%,
-    rgba(107, 45, 62, 0.3) 100%
-  );
-  border-radius: 0 0 0 40px;
-  box-shadow: -4px 0 12px rgba(0, 0, 0, 0.15);
-}
-
-/* Curtain drape folds */
-.stage__curtain-left::before,
-.stage__curtain-right::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: repeating-linear-gradient(
-    90deg,
-    transparent,
-    transparent 8px,
-    rgba(0, 0, 0, 0.08) 8px,
-    rgba(0, 0, 0, 0.08) 12px
-  );
-}
-
-/* Spotlights */
-.stage__spotlight {
-  position: absolute;
-  top: 0;
-  width: 120px;
-  height: 140px;
-  opacity: 0.5;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.stage__spotlight--left {
-  left: 30px;
-  background: radial-gradient(ellipse 100% 100% at 0% 0%, rgba(255, 240, 200, 0.25) 0%, transparent 70%);
-}
-
-.stage__spotlight--right {
-  right: 30px;
-  background: radial-gradient(ellipse 100% 100% at 100% 0%, rgba(255, 240, 200, 0.25) 0%, transparent 70%);
-}
-
-.stage__content {
+/* Sofa seat */
+.kouch__seat {
+  width: 220px;
+  padding: 14px 16px 18px;
+  border-radius: 8px 8px 14px 14px;
+  background: linear-gradient(180deg, #D4C494 0%, #C9B07A 50%, #B89E6A 100%);
+  border: 1px solid rgba(138, 118, 80, 0.3);
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.1),
+    0 1px 4px rgba(0, 0, 0, 0.06),
+    inset 0 1px 2px rgba(255, 255, 255, 0.2);
   position: relative;
+  z-index: 1;
+}
+
+/* Armrests */
+.kouch__arm {
+  position: absolute;
+  top: 16px;
+  width: 16px;
+  height: 70px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #C9B07A 0%, #A68B4B 100%);
+  border: 1px solid rgba(138, 118, 80, 0.3);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   z-index: 3;
+}
+
+.kouch__arm--left {
+  left: -8px;
+  border-radius: 10px 4px 4px 10px;
+}
+
+.kouch__arm--right {
+  right: -8px;
+  border-radius: 4px 10px 10px 4px;
+}
+
+.kouch__content {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 2px;
 }
 
-.stage__icon {
-  font-size: 2.2rem;
-  margin-bottom: 6px;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+.kouch__icon {
+  font-size: 1.6rem;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15));
 }
 
-.stage__label {
+.kouch__label {
   font-family: var(--font-heading);
-  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  font-size: 0.85rem;
   font-weight: 600;
   color: var(--gold-deep);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-.stage__sub {
+.kouch__sub {
   font-family: var(--font-accent);
-  font-size: clamp(1rem, 2.5vw, 1.2rem);
-  color: var(--gold);
-  margin-top: 2px;
+  font-size: 0.95rem;
+  color: var(--text);
+  opacity: 0.7;
 }
 
-/* Stage front edge (wooden lip) */
-.stage__edge {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 10px;
-  background: linear-gradient(180deg, var(--stage-wood) 0%, var(--stage-wood-dark) 100%);
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-  z-index: 4;
-}
+/* ===== DANCE FLOOR ===== */
 
-/* Spacer between stage and tables (dance floor / open area) */
-.stage__spacer {
-  position: relative;
+.dancefloor {
   width: 100%;
-  height: 70px;
+  padding: 16px 40px 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.dancefloor__surface {
+  width: 70%;
+  max-width: 340px;
+  height: 90px;
+  border-radius: 12px;
+  background:
+    repeating-conic-gradient(
+      rgba(138, 118, 80, 0.06) 0% 25%,
+      transparent 0% 50%
+    ) 0 0 / 28px 28px,
+    linear-gradient(135deg, #F0EBDA 0%, #E8E2CC 50%, #F0EBDA 100%);
+  border: 1px solid rgba(138, 118, 80, 0.12);
+  box-shadow:
+    inset 0 0 20px rgba(138, 118, 80, 0.05),
+    0 2px 8px rgba(0, 0, 0, 0.04);
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-}
-
-.stage__floor-pattern {
-  width: 80%;
-  max-width: 320px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(138, 118, 80, 0.2), transparent);
   position: relative;
 }
 
-.stage__floor-pattern::before,
-.stage__floor-pattern::after {
-  content: '✦';
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 0.55rem;
-  color: var(--gold);
-  opacity: 0.4;
-}
-
-.stage__floor-pattern::before {
-  left: -12px;
-}
-
-.stage__floor-pattern::after {
-  right: -12px;
+.dancefloor__label {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  opacity: 0.6;
 }
 
 /* ===== TABLE GRID ===== */
@@ -387,6 +362,15 @@ body {
 
 .table-row__right {
   justify-content: flex-start;
+}
+
+/* First row: tables pushed to the outer walls, away from aisle */
+.table-row--narrow .table-row__left {
+  justify-content: flex-start;
+}
+
+.table-row--narrow .table-row__right {
+  justify-content: flex-end;
 }
 
 /* Aisle gap in each row */
@@ -486,14 +470,14 @@ body {
 
 .chair {
   position: absolute;
-  width: 13px;
-  height: 13px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background:
     radial-gradient(circle at 40% 35%, #B89E6A, #8A7650, #6B5A3A);
   border: 1px solid rgba(107, 90, 58, 0.3);
   box-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.1),
     inset 0 1px 1px rgba(255, 255, 255, 0.15);
   opacity: 0.7;
   transition: opacity 0.3s ease, transform 0.3s ease;
@@ -508,24 +492,17 @@ body {
   opacity: 1;
 }
 
-/* Position 8 chairs around a circle */
-.chair:nth-child(1) { top: 2%; left: 50%; transform: translate(-50%, -50%); }
-.chair:nth-child(2) { top: 15%; right: 15%; transform: translate(50%, -50%); }
-.chair:nth-child(3) { top: 50%; right: 2%; transform: translate(50%, -50%); }
-.chair:nth-child(4) { bottom: 15%; right: 15%; transform: translate(50%, 50%); }
-.chair:nth-child(5) { bottom: 2%; left: 50%; transform: translate(-50%, 50%); }
-.chair:nth-child(6) { bottom: 15%; left: 15%; transform: translate(-50%, 50%); }
-.chair:nth-child(7) { top: 50%; left: 2%; transform: translate(-50%, -50%); }
-.chair:nth-child(8) { top: 15%; left: 15%; transform: translate(-50%, -50%); }
+/* Position 8 chairs tightly around the table */
+.chair:nth-child(1) { top: 6%;  left: 50%; transform: translate(-50%, -50%); }
+.chair:nth-child(2) { top: 18%; right: 18%; transform: translate(50%, -50%); }
+.chair:nth-child(3) { top: 50%; right: 6%;  transform: translate(50%, -50%); }
+.chair:nth-child(4) { bottom: 18%; right: 18%; transform: translate(50%, 50%); }
+.chair:nth-child(5) { bottom: 6%;  left: 50%; transform: translate(-50%, 50%); }
+.chair:nth-child(6) { bottom: 18%; left: 18%; transform: translate(-50%, 50%); }
+.chair:nth-child(7) { top: 50%; left: 6%;  transform: translate(-50%, -50%); }
+.chair:nth-child(8) { top: 18%; left: 18%; transform: translate(-50%, -50%); }
 
-.table:hover .chair:nth-child(1) { transform: translate(-50%, -50%) scale(1.05); }
-.table:hover .chair:nth-child(2) { transform: translate(50%, -50%) scale(1.05); }
-.table:hover .chair:nth-child(3) { transform: translate(50%, -50%) scale(1.05); }
-.table:hover .chair:nth-child(4) { transform: translate(50%, 50%) scale(1.05); }
-.table:hover .chair:nth-child(5) { transform: translate(-50%, 50%) scale(1.05); }
-.table:hover .chair:nth-child(6) { transform: translate(-50%, 50%) scale(1.05); }
-.table:hover .chair:nth-child(7) { transform: translate(-50%, -50%) scale(1.05); }
-.table:hover .chair:nth-child(8) { transform: translate(-50%, -50%) scale(1.05); }
+
 
 /* ===== EXTRA TABLES ROW ===== */
 
@@ -740,8 +717,8 @@ body {
   }
 
   .chair {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
   }
 
   .aisle {
@@ -763,17 +740,20 @@ body {
     padding: 8px 14px 0;
   }
 
-  .stage__platform {
-    padding: 28px 28px 22px;
+  .kouch {
+    width: 180px;
   }
 
-  .stage__curtain-left,
-  .stage__curtain-right {
-    width: 28px;
+  .kouch__back {
+    width: 164px;
   }
 
-  .stage__spacer {
-    height: 50px;
+  .kouch__seat {
+    width: 180px;
+  }
+
+  .dancefloor__surface {
+    height: 70px;
   }
 
   .hall {
@@ -796,8 +776,8 @@ body {
   }
 
   .chair {
-    width: 8px;
-    height: 8px;
+    width: 7px;
+    height: 7px;
   }
 
   .aisle {
@@ -809,13 +789,20 @@ body {
     width: 16px;
   }
 
-  .stage__curtain-left,
-  .stage__curtain-right {
-    width: 20px;
+  .kouch {
+    width: 160px;
   }
 
-  .stage__spacer {
-    height: 40px;
+  .kouch__back {
+    width: 144px;
+  }
+
+  .kouch__seat {
+    width: 160px;
+  }
+
+  .dancefloor__surface {
+    height: 56px;
   }
 
   .tables-area {

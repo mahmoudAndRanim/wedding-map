@@ -1,20 +1,27 @@
 export default function Stage() {
   return (
     <div className="stage">
-      <div className="stage__platform">
-        <div className="stage__curtain-left" />
-        <div className="stage__curtain-right" />
-        <div className="stage__spotlight stage__spotlight--left" />
-        <div className="stage__spotlight stage__spotlight--right" />
-        <div className="stage__content">
-          <div className="stage__icon">💍</div>
-          <div className="stage__label">Scenen</div>
-          <div className="stage__sub">Brudeparret</div>
+      {/* Centered sofa / bride & groom seating */}
+      <div className="stage__area">
+        <div className="kouch">
+          <div className="kouch__back" />
+          <div className="kouch__seat">
+            <div className="kouch__content">
+              <div className="kouch__icon">💍</div>
+              <div className="kouch__label">Brudeparret</div>
+              <div className="kouch__sub">Mahmoud & Raneem</div>
+            </div>
+          </div>
+          <div className="kouch__arm kouch__arm--left" />
+          <div className="kouch__arm kouch__arm--right" />
         </div>
-        <div className="stage__edge" />
       </div>
-      <div className="stage__spacer">
-        <div className="stage__floor-pattern" />
+
+      {/* Dance floor */}
+      <div className="dancefloor">
+        <div className="dancefloor__surface">
+          <div className="dancefloor__label">Dansegulv</div>
+        </div>
       </div>
     </div>
   )

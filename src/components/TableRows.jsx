@@ -27,15 +27,17 @@ function Table({ table, isActive, onClick }) {
 export default function TableRows({ tables, activeTableId, onTableClick }) {
   /*
     Layout: 14 tables
-    - 12 tables in 3 rows of 4 (2 left | aisle | 2 right)
-    - 2 extra tables centered at the bottom
-    Numbering starts at 1 near the stage
+    - Row 1 (nearest stage): 1 left | aisle | 1 right  (tables 1-2)
+    - Row 2: 2 left | aisle | 2 right  (tables 3-6)
+    - Row 3: 2 left | aisle | 2 right  (tables 7-10)
+    - Row 4: 2 left | aisle | 2 right  (tables 11-14)
   */
 
   const rows = [
-    { left: [1, 2], right: [3, 4] },
-    { left: [5, 6], right: [7, 8] },
-    { left: [9, 10], right: [11, 12] },
+    { left: [1], right: [2] },
+    { left: [3, 4], right: [5, 6] },
+    { left: [7, 8], right: [9, 10] },
+    { left: [11, 12], right: [13, 14] },
   ]
 
   const tableMap = {}
@@ -43,11 +45,10 @@ export default function TableRows({ tables, activeTableId, onTableClick }) {
 
   return (
     <div className="tables-area">
-      {/* Aisle runs continuously */}
       <div className="aisle-line" />
 
       {rows.map((row, ri) => (
-        <div className="table-row" key={ri}>
+        <div className={`table-row${row.left.length === 1 ? ' table-row--narrow' : ''}`} key={ri}>
           <div className="table-row__left">
             {row.left.map((id) => (
               <Table
@@ -71,20 +72,6 @@ export default function TableRows({ tables, activeTableId, onTableClick }) {
           </div>
         </div>
       ))}
-
-      {/* Tables 13 & 14 */}
-      <div className="tables-extra">
-        <Table
-          table={tableMap[13]}
-          isActive={activeTableId === 13}
-          onClick={onTableClick}
-        />
-        <Table
-          table={tableMap[14]}
-          isActive={activeTableId === 14}
-          onClick={onTableClick}
-        />
-      </div>
     </div>
   )
 }
