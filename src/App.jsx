@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useMemo } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import useGoogleSheet from './hooks/useGoogleSheet'
 import Stage from './components/Stage'
@@ -46,6 +46,13 @@ export default function App() {
   const t = translations[lang]
   const isArabic = lang === 'ar'
 
+  const highlightedTableId = useMemo(() => {
+    const params = new URLSearchParams(window.location.search)
+    const bord = parseInt(params.get('bord'), 10)
+    if (bord && bord >= 3 && bord <= 14) return bord
+    return null
+  }, [])
+
   const handleTableClick = useCallback((table) => {
     setActiveTable(table)
   }, [])
@@ -74,7 +81,7 @@ export default function App() {
       ) : (
         <div className="hall">
           <Stage t={t} />
-          <TableRows tables={tables} activeTableId={activeTable?.id} onTableClick={handleTableClick} t={t} />
+          <TableRows tables={tables} activeTableId={activeTable?.id} highlightedTableId={highlightedTableId} onTableClick={handleTableClick} t={t} />
         </div>
       )}
 

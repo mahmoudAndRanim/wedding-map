@@ -2,17 +2,18 @@ import { motion } from 'framer-motion'
 
 const CHAIRS_PER_TABLE = 8
 
-function Table({ table, isActive, onClick }) {
+function Table({ table, isActive, isHighlighted, isDimmed, onClick }) {
   const isFamily = table.family
   const filled = isFamily ? 0 : table.guests.filter((g) => g).length
   const isFull = !isFamily && filled >= CHAIRS_PER_TABLE
   const isEmpty = !isFamily && filled === 0
-  const statusClass = isFamily ? ' table--family' : isFull ? ' table--full' : isEmpty ? ' table--empty' : ' table--available'
+  const statusClass = isHighlighted ? ' table--highlighted' : isFamily ? ' table--family' : isFull ? ' table--full' : isEmpty ? ' table--empty' : ' table--available'
+  const dimClass = isDimmed ? ' table--dimmed' : ''
 
   return (
     <motion.div
-      className={`table${isActive ? ' table--active' : ''}${statusClass}`}
-      onClick={() => !isFamily && onClick(table)}
+      className={`table${isActive ? ' table--active' : ''}${statusClass}${dimClass}`}
+      onClick={() => !isFamily && !isDimmed && onClick(table)}
       initial={{ opacity: 0, scale: 0.7 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.4, delay: table.id * 0.04, type: 'spring', stiffness: 200 }}
@@ -35,7 +36,7 @@ function Table({ table, isActive, onClick }) {
   )
 }
 
-export default function TableRows({ tables, activeTableId, onTableClick }) {
+export default function TableRows({ tables, activeTableId, highlightedTableId, onTableClick }) {
   /*
     Layout: 14 tables
     - Row 1 (nearest stage): 1 left | aisle | 1 right  (tables 1-2)
@@ -66,6 +67,8 @@ export default function TableRows({ tables, activeTableId, onTableClick }) {
                 key={id}
                 table={tableMap[id]}
                 isActive={activeTableId === id}
+                isHighlighted={highlightedTableId === id}
+                isDimmed={highlightedTableId != null && highlightedTableId !== id}
                 onClick={onTableClick}
               />
             ))}
@@ -77,6 +80,8 @@ export default function TableRows({ tables, activeTableId, onTableClick }) {
                 key={id}
                 table={tableMap[id]}
                 isActive={activeTableId === id}
+                isHighlighted={highlightedTableId === id}
+                isDimmed={highlightedTableId != null && highlightedTableId !== id}
                 onClick={onTableClick}
               />
             ))}
